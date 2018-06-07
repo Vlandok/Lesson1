@@ -12,7 +12,7 @@ public class Student {
         grade = c;
         birthdayYear = Integer.valueOf(d);
         id = System.currentTimeMillis();
-    }
+     }
 
     String info () {
         info = "id: " + id + "  " +

@@ -10,12 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Activity1 extends AppCompatActivity {
 
-    private EditText name;
+    private EditText editTextName;
     private Button btnInfo;
     private Button btnAdd;
     private TextView txtView;
@@ -33,7 +35,7 @@ public class Activity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1);
 
-        name = findViewById(R.id.editText);
+        editTextName = findViewById(R.id.editText);
         btnInfo = findViewById(R.id.button);
         btnAdd = findViewById(R.id.button4);
         txtView = findViewById(R.id.textView);
@@ -42,7 +44,9 @@ public class Activity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                students.add(name.getText().toString());
+                students.add(editTextName.getText().toString());
+                editTextName.setText("");
+
             }
         });
 
@@ -51,10 +55,10 @@ public class Activity1 extends AppCompatActivity {
             public void onClick(View v) {
                 TreeSet<String> sortStudents = new TreeSet<>(students);
                 Iterator<String> iterator =  sortStudents.iterator();
-                String nameStudents = "";
+                StringBuilder nameStudents = new StringBuilder();
 
                 while (iterator.hasNext()) {
-                    nameStudents = nameStudents + iterator.next() + "\n";
+                    nameStudents = nameStudents.append(iterator.next()).append("\n");
                 }
                 txtView.setText(nameStudents);
 
