@@ -18,9 +18,9 @@ import java.util.Map;
 
 public class Activity2 extends AppCompatActivity {
 
-    private EditText learner;
+    private EditText editTextLearner;
     private Button btnLearner;
-    private TextView infoLearner;
+    private TextView textViewLearner;
     private String[] parts;
     private Student student;
     private String infoAll;
@@ -39,22 +39,23 @@ public class Activity2 extends AppCompatActivity {
 
 
 
-        learner = findViewById(R.id.editLearner);
+        editTextLearner = findViewById(R.id.editLearner);
         btnLearner = findViewById(R.id.btnLearner);
-        infoLearner = findViewById(R.id.infoLearner);
+        textViewLearner = findViewById(R.id.infoLearner);
 
 
-        learner.setOnKeyListener(new View.OnKeyListener()
+        editTextLearner.setOnKeyListener(new View.OnKeyListener()
         {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER))
                 {
-                    Toast.makeText(Activity2.this, learner.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity2.this, editTextLearner.getText(), Toast.LENGTH_SHORT).show();
 
-                    infoAll = learner.getText().toString();
+                    infoAll = editTextLearner.getText().toString();
                     parts = infoAll.split(" ");
                     student = new Student(parts[0], parts[1], parts[2], parts[3]);
                     hashMap.put(student.id,student.info());
+                    editTextLearner.setText("");
 
                     return true;
                 }
@@ -66,7 +67,7 @@ public class Activity2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 String info = hashMap.values() + "\n";
-                infoLearner.setText(info);
+                textViewLearner.setText(info);
 
             }
         });
